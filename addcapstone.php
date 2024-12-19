@@ -71,22 +71,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
 
         <div class="mb-3">
-            <label for="a1_sname" class="form-label">Student Surname</label>
+            <label for="a1_sname" class="form-label">Author1 Surname</label>
             <input type="text" class="form-control" name="a1_sname" required>
         </div>
 
         <div class="mb-3">
-            <label for="a1_name" class="form-label">Student Name</label>
+            <label for="a1_name" class="form-label">Author1 Name</label>
             <input type="text" class="form-control" name="a1_fname" required>
         </div>
 
         <div class="mb-3">
-            <label for="a1_name" class="form-label">Student Middle</label>
+            <label for="a1_name" class="form-label">Author1 Middle</label>
             <input type="text" class="form-control" name="a1_mname" required>
         </div>
 
         <div class="mb-3">
-            <label for="a1_role" class="form-label">Role</label>
+            <label for="a1_role" class="form-label">Author1 Role</label>
             <input type="text" class="form-control" name="a1_role" required>
         </div>
 

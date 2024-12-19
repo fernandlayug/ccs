@@ -119,13 +119,13 @@ try {
             <div class="col-md-4">
                 <div class="grid-item dns" onclick="window.location.href='dns.html'">
                     <div class="grid-icon">🌐</div>
-                    <h4>DNS</h4>
+                    <h4>DiNS</h4>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="grid-item class-offers" onclick="window.location.href='class-offers.html'">
                     <div class="grid-icon">📚</div>
-                    <h4>Class Offers</h4>
+                    <h4>Class Officers</h4>
                 </div>
             </div>
         </div>
