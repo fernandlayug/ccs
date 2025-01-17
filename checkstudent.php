@@ -1,9 +1,9 @@
 <?php
-// Database connection
-$host = 'localhost';
-$user = 'ccsadmin';
-$password = '12345678';
-$database = 'ccs_db';
+// Assume a simple database connection (you would normally use prepared statements to prevent SQL injection)
+$servername = "localhost";
+$username = "ccsadmin";
+$password = "12345678";
+$dbname = "ccs_db";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

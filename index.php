@@ -2,17 +2,19 @@
 include 'db.php';
 
 try {
-    // Prepare and execute query to fetch images
-    $stmt = $conn->prepare("SELECT * FROM tbl_capstone LIMIT 4");
-    $stmt->execute();
+    // Fetch images from the database
+    $result = $conn->query("SELECT * FROM tbl_capstone LIMIT 4");
+
+    // Check if query was successful
+    if (!$result) {
+        throw new Exception("Error fetching images: " . $conn->error);
+    }
 
     // Check if any images exist
-    $images_exist = ($stmt->rowCount() > 0);
+    $images_exist = ($result->num_rows > 0);
 } catch (Exception $e) {
     $error_message = $e->getMessage();
 }
-
-
 
 
 ?>
@@ -203,7 +205,6 @@ try {
     </div>
 </nav>
 
-<h1>Sir Joshua</h1>
 
 <!-- Banner Section -->
 <div id="bannerCarousel" class="carousel slide mt-4" data-bs-ride="carousel">
@@ -264,31 +265,36 @@ try {
 
     <!-- Grid Section 1 -->
     <div class="row mb-3">
-        <?php if (isset($error_message)): ?>
-            <div class="alert alert-danger" role="alert">
-                <?= htmlspecialchars($error_message) ?>
-            </div>
-        <?php endif; ?>
 
-        <?php if ($images_exist): ?>
-            <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
-                <div class="col-md-3 mb-3">
-                    <div class="p-3 border grid-item">
-                        <img src="<?= htmlspecialchars($row['poster_path']) ?>" alt="Uploaded Image" class="img-fluid">
-                    </div>
+    <?php if (isset($error_message)): ?>
+        <div class="alert alert-danger" role="alert">
+            <?= htmlspecialchars($error_message) ?>
+        </div>
+    <?php endif; ?>
+
+    <?php if (isset($images_exist) && !$images_exist): ?>
+        <div class="alert alert-info" role="alert">
+            No images uploaded yet. Be the first to upload an image!
+        </div>
+    <?php endif; ?>
+
+    <?php if (isset($images_exist) && $images_exist): ?>
+        <?php while ($row = $result->fetch_assoc()): ?>
+
+            <div class="col-md-3 mb-3">
+                <div class="p-3 border grid-item" onclick="">
+                    <img src="<?php echo $row['poster_path']; ?>" alt="Uploaded Image" class="img-fluid">
+                    <!-- <h6 class="mt-2">Record Management</h6> -->
                 </div>
-            <?php endwhile; ?>
-        <?php else: ?>
-            <div class="alert alert-info" role="alert">
-                No images uploaded yet. Be the first to upload an image!
             </div>
-        <?php endif; ?>
+        <?php endwhile; ?>
+    <?php endif; ?>
+
     </div> 
 
-    <div class="text-end mb-4">
-        <a href="seemore1.php" class="btn btn-primary">See More...</a>
-    </div>
-
+<div class="text-end mb-4">
+            <a href="seemore1.php" class="btn btn-primary">See More...</a>
+</div>
     
     
     <!-- Grid Section 2 -->

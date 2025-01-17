@@ -2,20 +2,17 @@
 include 'db.php';
 
 try {
-    // Fetch all records from tbl_capstone
-    $stmt = $conn->query("SELECT * FROM tbl_capstone");
 
-    if (!$stmt) {
-        throw new Exception("Error fetching records: " . $conn->errorInfo()[2]);
+    $result = $conn->query("SELECT * FROM tbl_capstone");
+
+
+    if (!$result) {
+        throw new Exception("Error fetching images: " . $conn->error);
     }
 
-    // Fetch all results into an array
-    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    // Check if there are images in the database
-    $images_exist = (count($rows) > 0); 
+    $images_exist = ($result->num_rows > 0);
 } catch (Exception $e) {
-    $error_message = $e->getMessage(); // Capture the error message
+    $error_message = $e->getMessage();
 }
 ?>
 
@@ -116,33 +113,34 @@ try {
 
 <!-- Main Content Section -->
 <div class="container mt-5">
-    <h1 class="mb-4 text-center">All Images</h1>
+        <h1 class="mb-4 text-center">All Images</h1>
+        
+        <div class="row mb-3">
 
-    <?php if (isset($error_message)): ?>
-        <div class="alert alert-danger" role="alert">
-            <?= htmlspecialchars($error_message) ?>
-        </div>
-    <?php endif; ?>
-
-    <!-- Check if images exist -->
-    <?php if (isset($images_exist) && !$images_exist): ?>
-        <div class="alert alert-info" role="alert">
-            No images uploaded yet. Be the first to upload an image!
-        </div>
-    <?php endif; ?>
-
-    <div class="row">
-        <?php if (isset($images_exist) && $images_exist): ?>
-            <?php foreach ($rows as $row): ?>
-                <div class="col-md-3 mb-3">
-                    <div class="p-3 border grid-item">
-                        <img src="<?= htmlspecialchars($row['poster_path']) ?>" alt="Uploaded Image" class="img-fluid">
-                    </div>
+            <?php if (isset($error_message)): ?>
+                <div class="alert alert-danger" role="alert">
+                    <?= htmlspecialchars($error_message) ?>
                 </div>
-            <?php endforeach; ?>
-        <?php endif; ?>
-    </div> 
-</div>
+            <?php endif; ?>
+
+            <?php if (isset($images_exist) && !$images_exist): ?>
+                <div class="alert alert-info" role="alert">
+                    No images uploaded yet. Be the first to upload an image!
+                </div>
+            <?php endif; ?>
+
+            <?php if (isset($images_exist) && $images_exist): ?>
+                <?php while ($row = $result->fetch_assoc()): ?>
+                    <div class="col-md-3 mb-3">
+                        <div class="p-3 border grid-item">
+                            <img src="<?php echo $row['poster_path']; ?>" alt="Uploaded Image" class="img-fluid">
+                        </div>
+                    </div>
+                <?php endwhile; ?>
+            <?php endif; ?>
+
+        </div> 
+    </div>
 
 <!-- Footer Section -->
 <footer class="bg-dark text-white text-center py-3">

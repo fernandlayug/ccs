@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,8 +44,6 @@
                 document.getElementById("contactnumberInfo").disabled = false;
                 document.getElementById("emailInfo").disabled = false;
                 document.getElementById("passwordInfo").disabled = false;
-
-                document.getElementById("check").style.display = "none"
     
 
                 //form control
@@ -63,7 +64,6 @@
 
                 //form control
                 document.getElementById("signup").style.display = "none";
-
             }
         }
     };
@@ -71,7 +71,7 @@
 
     </script>
 
-    <script> //////////edit for names
+    <script>
         function autoFill() {
             const input1 = document.getElementById('studentID').value;
             document.getElementById('student_id').value = input1;
@@ -84,69 +84,60 @@
 
 
 <div  class="container" id="check" >
-    <div class="col-xl-6" id="check">
-        
+    <div class="col-xl-6">
         <label class = "form-control-label" for="studentID">Enter Student ID: </label>  
         <input type="text" id="studentID" name="studentID " oninput="autoFill()">
         <br>
         <br>
         <button type="button" style="width: 100px; height: 50px;" class="btn btn-success" onclick="checkStudent()">Check ID</button>
-        <a href="login.php" class="btn btn-primary" type="button">Login</a>
-        
-        
 </div>
    
 </div>
-
-
-
-
 
 <br><br><br><br>
 <div class="container" id="signup"  style="display: none;">
     <form  action="register.php" method="POST">
         
             <label class = "form-control-label" for="id">ID:</label>
-            <input class = "form-control"type="text" id="student_id" name="student_id" disabled readonly><br><br> <!-- oki -->
+            <input class = "form-control"type="text" id="student_id" name="student_id" disabled readonly><br><br>
            
         
-            <label class = "form-control-label" for="extraInfo">Username: </label>
-            <input class = "form-control" type="text" id="usernameInfo" name="usernameInfo" enable required>
-
-            <label class = "form-control-label" for="extraInfo">FirstName: </label>
-            <input class = "form-control" type="text" id="firstnameInfo" name="firstnameInfo" disabled required>
-                
-            <label for="name">MiddleName:</label>
-            <input class = "form-control" type="text" id="middlenameInfo" name="middlenameInfo" disabled required><br>
-
-            <label for="name">LastName:</label>
-            <input class = "form-control" type="text" id="lastnameInfo" name="lastnameInfo" disabled required><br>
 
 
-            <label for="dropdown">Choose an option:</label>
-            <select id="courseInfo" name="courseInfo" class="form-control mb-3" disabled required>
-                <option value="">--Select an option--</option>
-                <option value="BSIS">BSIS</option>
-                <option value="BSAIS">BSAIS</option>
-                <option value="BEED">BEED</option>
-                <option value="BSET">BSET</option>
-            </select>
-
-
-            <label for="name">Contactnumber:</label>
-            <input class = "form-control" type="number" id="contactnumberInfo" name="contactnumberInfo" disabled required><br>
+        <label class = "form-control-label" for="extraInfo">FirstName: </label>
+        <input class = "form-control" type="text" id="firstnameInfo" name="firstnameInfo" disabled required>
             
-            <label for="name">email:</label>
-            <input class = "form-control" type="email" id="emailInfo" name="emailInfo" disabled required><br>
+        <label for="name">MiddleName:</label>
+        <input class = "form-control" type="text" id="middlenameInfo" name="middlenameInfo" disabled required><br>
+
+        <label for="name">LastName:</label>
+        <input class = "form-control" type="text" id="lastnameInfo" name="lastnameInfo" disabled required><br>
 
 
-            <label for="name">password:</label>
-            <input class = "form-control" type="password" id="passwordInfo" name="passwordInfo" disabled required><br>
+        <label for="dropdown">Choose an option:</label>
+        <select id="courseInfo" name="courseInfo" class="form-control mb-3" disabled required>
+            <option value="">--Select an option--</option>
+            <option value="BSIS">BSIS</option>
+            <option value="BSAIS">BSAIS</option>
+            <option value="BEED">BEED</option>
+            <option value="BSET">BSET</option>
+        </select>
 
-            <div>
-                <br>
-            <button type="submit" value="Register" name = "reg"class="btn btn-primary" onclick="checkStudent()"> Register</button>
-            </div>
+
+        <label for="name">Contactnumber:</label>
+        <input class = "form-control" type="number" id="contactnumberInfo" name="contactnumberInfo" disabled required><br>
+        
+        <label for="name">email:</label>
+        <input class = "form-control" type="email" id="emailInfo" name="emailInfo" disabled required><br>
+
+
+        <label for="name">password:</label>
+        <input class = "form-control" type="password" id="passwordInfo" name="passwordInfo" disabled required><br>
+
+        <div>
+            <br>
+        <button type="submit" value="Register" name = "reg"class="btn btn-primary" onclick="checkStudent()"> Register</button>
+        </div>
         
     </form>
  </div>
@@ -161,9 +152,9 @@
 <?php
 // Database connection
 $host = 'localhost';
-$user = 'ccsadmin';
+$dbname = 'ccs_db';
+$username = 'ccsadmin';
 $password = '12345678';
-$database = 'ccs_db';
 
 try {
     $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
@@ -181,13 +172,12 @@ try {
         $contactnumber = $_POST['contactnumberInfo'];
         $email = $_POST['emailInfo'];
         $password = $_POST['passwordInfo'];
-        $username=$_POST['usernameInfo'];
        
        
         
         // Update query
         $sql = "UPDATE tblstudent SET firstname = :firstname, middlename = :middlename, lastname = :lastname, course = :course,
-        contactnumber = :contactnumber, email = :email, username = :username, password = :password WHERE student_id = :student_id";
+        contactnumber = :contactnumber, email = :email, password = :password WHERE student_id = :student_id";
         
         // Prepare the query
         $stmt = $conn->prepare($sql);
@@ -201,7 +191,6 @@ try {
         $stmt->bindParam(':contactnumber', $contactnumber);
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':password', $password);
-        $stmt->bindParam(':username', $username);
 
 
    
