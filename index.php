@@ -205,7 +205,7 @@ try {
     </div>
 </nav>
 
-<h1>joshua</h1>
+
 
 
 <!-- Banner Section -->
