@@ -206,8 +206,6 @@ try {
 </nav>
 
 
-
-
 <!-- Banner Section -->
 <div id="bannerCarousel" class="carousel slide mt-4" data-bs-ride="carousel">
     <div class="carousel-inner">
