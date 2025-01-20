@@ -50,7 +50,7 @@ try {
                     Login
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="userDropdown">
-                    <li><a class="dropdown-item" href="login.php">Student</a></li>
+                    <li><a class="dropdown-item" href="student/index.php">Student</a></li>
                     <li><a class="dropdown-item" href="login_admin.php">Admin</a></li>
                 </ul>
             </li>
