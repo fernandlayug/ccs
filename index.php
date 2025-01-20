@@ -30,7 +30,7 @@ try {
     <link rel="stylesheet" href="static/css/index.css">
 </head>
 <body>
-
+<p>hello</p>
 <!-- Navigator Section -->
 <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
