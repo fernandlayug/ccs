@@ -12,7 +12,7 @@ $sql=mysqli_query($conn,"SELECT * FROM tblstudent WHERE email='$email' and passw
 $result=mysqli_fetch_array($sql);
 if($result>0)
 {
-$_SESSION['login']=$_POST['username'];
+$_SESSION['login']=$_POST['email'];
 $_SESSION['id']=$result['id'];
 header("location:dashboard.php");
 
