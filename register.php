@@ -19,8 +19,8 @@ if(isset($_POST['submit']))
 $sql=mysqli_query($conn,"Update tblstudent set firstname='$firstname', middlename='$middlename', lastname='$lastname', course='$course', contactnumber='$contactnumber', email='$email', password='$password' where student_id='$student_id'");
     if($sql)
     {
-    $msg=" Updated Successfully";
-
+        header("location:student/index.php");
+        
     }
 }
 ?>
@@ -170,7 +170,11 @@ function checkCode() {
         <br>
         <br>
         <button type="button" style="width: 100px; height: 50px;" class="btn btn-success" onclick="checkCode()">Check</button>
+        <br>
+        <br>
+        <a class="btn btn-danger" type="button"href="index.php">back</a>
     </div>
+
    
 </div>
 
@@ -209,13 +213,13 @@ function checkCode() {
         <input class = "form-control" type="text" id="lastnameInfo" name="lastnameInfo" disabled required><br>
 
 
-        <label for="dropdown">Choose an option:</label>
+        <label for="dropdown">Course:</label>
         <select id="courseInfo" name="courseInfo" class="form-control mb-3" disabled required>
-            <option value="">--Select an option--</option>
-            <option value="BSIS">BSIS</option>
-            <option value="BSAIS">BSAIS</option>
-            <option value="BEED">BEED</option>
-            <option value="BSET">BSET</option>
+            <option value="">--Select Course--</option>
+            <option value="BSIS">Bachelor of Science in Information Systems</option>
+            <option value="BSAIS">Bachelor of Science in Accounting Information Systems</option>
+            <option value="BEED"> Bachelor of Elementary Education</option>
+            <option value="BSET">Bachelor of Science in Entrepreneurship</option>
         </select>
 
 

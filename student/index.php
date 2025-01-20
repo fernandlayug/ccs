@@ -84,7 +84,7 @@ $_SESSION['errmsg']="Invalid username or password";
 											<div class="admin-login">
 	
 </div>
-							<a href="../../index.php">Back to Home Page</a>
+							<a href="../index.php">Back to Home Page</a>
 							
 						</fieldset>
 					</form>
