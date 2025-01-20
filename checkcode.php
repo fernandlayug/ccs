@@ -6,9 +6,6 @@ include 'db.php';
 
 
 // Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
 
 // Get the student ID from the request
 $accessCode = $_POST['accessCode'];
