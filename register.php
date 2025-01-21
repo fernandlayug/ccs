@@ -154,7 +154,6 @@ function checkCode() {
 
 
 
-
 <div  class="container" id="check" >
     <div class="col-xl-6">
         <label class = "form-control-label" for="studentID">Enter Student ID: </label>  
@@ -181,71 +180,69 @@ function checkCode() {
 
 
 
-<br><br><br><br>
-<div class="container" id="signup"  style="display: none;">
-    <form  action="register.php" method="POST">
-        
-
-    <?php
-    
-    ?>
-
-
-
-
-
-        <label class = "form-control-label" for="id">ID:</label>
-        <input class = "form-control"type="text" id="student_id" name="student_id" disabled readonly><br><br>
-           
-        
-
-
-        <label class = "form-control-label" for="extraInfo">FirstName: </label>
-        <input class = "form-control" type="text" id="firstnameInfo" name="firstnameInfo" disabled required>
-
-        
-        <br>
-            
-        <label for="name">MiddleName:</label>
-        <input class = "form-control" type="text" id="middlenameInfo" name="middlenameInfo" disabled required><br>
-
-        <label for="name">LastName:</label>
-        <input class = "form-control" type="text" id="lastnameInfo" name="lastnameInfo" disabled required><br>
-
-
-        <label for="dropdown">Course:</label>
-        <select id="courseInfo" name="courseInfo" class="form-control mb-3" disabled required>
-            <option value="">--Select Course--</option>
-            <option value="BSIS">Bachelor of Science in Information Systems</option>
-            <option value="BSAIS">Bachelor of Science in Accounting Information Systems</option>
-            <option value="BEED"> Bachelor of Elementary Education</option>
-            <option value="BSET">Bachelor of Science in Entrepreneurship</option>
-        </select>
-
-
-        <label for="name">Contactnumber:</label>
-        <input class = "form-control" type="number" id="contactnumberInfo" name="contactnumberInfo" disabled required><br>
-        
-        <label for="name">email:</label>
-        <input class = "form-control" type="email" id="emailInfo" name="emailInfo" disabled required><br>
-
-
-        <label for="name">password:</label>
-        <input class = "form-control" type="password" id="passwordInfo" name="passwordInfo" disabled required><br>
-
-        <div>
-            <br>
-        <button type="submit" value="Register" name = "submit"class="btn btn-primary"> Register</button>
+<div class="container" id="signup" style="display: none; width: 450px; padding: 1rem; margin: 20px auto; border-radius: 10px; box-shadow: 0 12px 20px rgba(0, 0, 0, 0.7);">
+    <form action="register.php" method="POST">
+        <!-- ID, First Name, Middle Name, Last Name Row -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label class="form-label" for="id">ID:</label>
+                <input class="form-control" type="text" id="student_id" name="student_id" disabled readonly>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="extraInfo">First Name:</label>
+                <input class="form-control" type="text" id="firstnameInfo" name="firstnameInfo" disabled required>
+            </div>
         </div>
-        
+
+        <!-- Middle Name, Last Name, Course, Contact Row -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label class="form-label" for="name">Middle Name:</label>
+                <input class="form-control" type="text" id="middlenameInfo" name="middlenameInfo" disabled required>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="name">Last Name:</label>
+                <input class="form-control" type="text" id="lastnameInfo" name="lastnameInfo" disabled required>
+            </div>
+        </div>
+
+        <!-- Course, Contact Number, Email, Password Row -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label class="form-label" for="dropdown">Course:</label>
+                <select id="courseInfo" name="courseInfo" class="form-control" disabled required>
+                    <option value="">--Select Course--</option>
+                    <option value="BSIS">Bachelor of Science in Information Systems</option>
+                    <option value="BSAIS">Bachelor of Science in Accounting Information Systems</option>
+                    <option value="BEED">Bachelor of Elementary Education</option>
+                    <option value="BSET">Bachelor of Science in Entrepreneurship</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label" for="name">Contact Number:</label>
+                <input class="form-control" type="number" id="contactnumberInfo" name="contactnumberInfo" disabled required>
+            </div>
+        </div>
+
+        <!-- Email and Password Row -->
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label class="form-label" for="name">Email:</label>
+                <input class="form-control" type="email" id="emailInfo" name="emailInfo" disabled required>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label" for="name">Password:</label>
+                <input class="form-control" type="password" id="passwordInfo" name="passwordInfo" disabled required>
+            </div>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" value="Register" name="submit" class="btn btn-primary w-100">Register</button>
+        </div>
     </form>
- </div>
-
-
-
-
-
-
+</div>
 
 
 
