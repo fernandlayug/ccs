@@ -155,6 +155,9 @@ function checkCode() {
 
 
 <div  class="container" id="check" >
+    <!-- Add logo at the top -->
+    <img src="poster/srclogo.png" alt="Logo" style="width: 100px; height: auto; display: block; margin: 0 auto;">
+    <center>
     <div class="col-xl-6">
         <label class = "form-control-label" for="studentID">Enter Student ID: </label>  
         <input type="text" id="studentID" name="studentID " oninput="autoFill()">
@@ -173,6 +176,7 @@ function checkCode() {
         <br>
         <a class="btn btn-danger" type="button"href="index.php">back</a>
     </div>
+    </center>
 
    
 </div>
@@ -182,6 +186,8 @@ function checkCode() {
 
 <div class="container" id="signup" style="display: none; width: 450px; padding: 1rem; margin: 20px auto; border-radius: 10px; box-shadow: 0 12px 20px rgba(0, 0, 0, 0.7);">
     <form action="register.php" method="POST">
+        <!-- Add logo at the top -->
+        <img src="poster/srclogo.png" alt="Logo" style="width: 100px; height: auto; display: block; margin: 0 auto;">
         <!-- ID, First Name, Middle Name, Last Name Row -->
         <div class="row mb-3">
             <div class="col-md-6">

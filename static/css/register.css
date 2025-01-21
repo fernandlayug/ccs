@@ -7,7 +7,7 @@
 
 body {
     background-color: #275cec;
-    background: linear-gradient(to right, #c9c500, #275cec);
+    background: linear-gradient(to right, #dad600, #1549d6);
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -15,7 +15,7 @@ body {
 }
 
 .container {
-    background: linear-gradient(to right, #c9c500, #275cec);
+    background: linear-gradient(to right, #dad600, #1549d6);
     width: 300px; /* Decreased width */
     padding: 1.5rem; /* Increased padding for better spacing */
     margin: 20px auto; /* Reduced margin for tighter spacing */
