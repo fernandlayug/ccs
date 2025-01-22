@@ -156,7 +156,7 @@ function checkCode() {
 
 <div class="container" id="check" style="padding: 20px; max-width: 500px; margin: auto; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
     <!-- Add logo at the top -->
-    <img src="poster/srclogo.png" alt="Logo" style="width: 80px; height: auto; display: block; margin: 0 auto;">
+    <img src="pic/srclogo.png" alt="Logo" style="width: 80px; height: auto; display: block; margin: 0 auto;">
     <center>
         <div class="col-xl-6">
             <label class="form-control-label" for="studentID">Enter Student ID:</label>
@@ -183,7 +183,7 @@ function checkCode() {
 <div class="container" id="signup" style="display: none; width: 450px; padding: 1rem; margin: 20px auto; border-radius: 10px; box-shadow: 0 12px 20px rgba(0, 0, 0, 0.7);">
     <form action="register.php" method="POST">
         <!-- Add logo at the top -->
-        <img src="poster/srclogo.png" alt="Logo" style="width: 80px; height: auto; display: block; margin: 0 auto;">
+        <img src="pic/srclogo.png" alt="Logo" style="width: 80px; height: auto; display: block; margin: 0 auto;">
         <!-- ID, First Name, Middle Name, Last Name Row -->
         <div class="row mb-3">
             <div class="col-md-6">

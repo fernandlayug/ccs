@@ -51,7 +51,7 @@ try {
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="userDropdown">
                     <li><a class="dropdown-item" href="student/index.php">Student</a></li>
-                    <li><a class="dropdown-item" href="login_admin.php">Admin</a></li>
+                    <li><a class="dropdown-item" href="admin/index.php">Admin</a></li>
                 </ul>
             </li>
             <li class="nav-item dropdown">
@@ -60,7 +60,7 @@ try {
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="registerDropdown">
                     <li><a class="dropdown-item" href="register.php">Student</a></li>
-                    <li><a class="dropdown-item" href="register_admin.php">Admin</a></li>
+                    <li><a class="dropdown-item" href="admin/register.php">Admin</a></li>
                 </ul>
             </li>
             </ul>
