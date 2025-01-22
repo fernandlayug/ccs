@@ -59,7 +59,7 @@ try {
                     Register
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="registerDropdown">
-                    <li><a class="dropdown-item" href="register.php">Student</a></li>
+                    <li><a class="dropdown-item" href="student/register.php">Student</a></li>
                     <li><a class="dropdown-item" href="admin/registerteacher.php">Admin</a></li>
                 </ul>
             </li>
