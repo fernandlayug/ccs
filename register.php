@@ -177,7 +177,7 @@ function checkCode() {
 </div>
 
 
-
+hello
 
 <div class="container" id="signup" style="display: none; width: 450px; padding: 1rem; margin: 20px auto; border-radius: 10px; box-shadow: 0 12px 20px rgba(0, 0, 0, 0.7);">
     <form action="register.php" method="POST">
