@@ -171,6 +171,7 @@ function checkCode() {
             <br>
             <button type="button" style="width: 100px; height: 50px;" class="btn btn-success" onclick="checkCode()">Check</button>
             <br>
+            <br>
             <a class="btn btn-danger" type="button" href="index.php">Back</a>
         </div>
     </center>
