@@ -7,19 +7,19 @@ include('../db.php');
 
 if(isset($_POST['submit']))
 {
-    $student_id = $_POST['student_id'];
+    $emp_id = $_POST['emp_id'];
     $firstname = $_POST['firstnameInfo'];
     $middlename = $_POST['middlenameInfo'];
     $lastname = $_POST['lastnameInfo'];
-    $course = $_POST['courseInfo'];
+    $dept = $_POST['deptInfo'];
     $contactnumber = $_POST['contactnumberInfo'];
     $email = $_POST['emailInfo'];
     $password = $_POST['passwordInfo'];
    
-$sql=mysqli_query($conn,"Update tblstudent set firstname='$firstname', middlename='$middlename', lastname='$lastname', course='$course', contactnumber='$contactnumber', email='$email', password='$password' where student_id='$student_id'");
+$sql=mysqli_query($conn,"Update tblteacher set firstname='$firstname', middlename='$middlename', lastname='$lastname', dept='$dept', contactnumber='$contactnumber', email='$email', password='$password' where emp_id='$emp_id'");
     if($sql)
     {
-    $msg=" Updated Successfully";
+        header("location:index.php");
 
     }
 }
@@ -42,17 +42,17 @@ $sql=mysqli_query($conn,"Update tblstudent set firstname='$firstname', middlenam
     <title>Conditional Textbox Based on Database</title>
     
     <script>
-    function checkStudent() {
+    function checkTeacher() {
     // Get the student ID from the input
-    var studentID = document.getElementById("studentID").value;
+    var empId = document.getElementById("empId").value;
 
     // Create an AJAX request to send to the server
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "checkstudent.php", true);
+    xhr.open("POST", "checkteacher.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     
     // Send the student ID to the server
-    xhr.send("studentID=" + studentID);
+    xhr.send("empId=" + empId);
 
     // Handle the response from the server
     xhr.onreadystatechange = function() {
@@ -63,7 +63,14 @@ $sql=mysqli_query($conn,"Update tblstudent set firstname='$firstname', middlenam
             if (response == "found") {
                 
                 //not needed
-             
+                document.getElementById("firstnameInfo").disabled = false;
+                document.getElementById("middlenameInfo").disabled = false;
+                document.getElementById("lastnameInfo").disabled = false;
+                document.getElementById("emp_id").disabled = false;
+                document.getElementById("deptInfo").disabled = false;
+                document.getElementById("contactnumberInfo").disabled = false;
+                document.getElementById("emailInfo").disabled = false;
+                document.getElementById("passwordInfo").disabled = false;
     
 
                 //form control
@@ -110,8 +117,8 @@ function checkCode() {
                 document.getElementById("firstnameInfo").disabled = false;
                 document.getElementById("middlenameInfo").disabled = false;
                 document.getElementById("lastnameInfo").disabled = false;
-                document.getElementById("student_id").disabled = false;
-                document.getElementById("courseInfo").disabled = false;
+                document.getElementById("emp_id").disabled = false;
+                document.getElementById("deptInfo").disabled = false;
                 document.getElementById("contactnumberInfo").disabled = false;
                 document.getElementById("emailInfo").disabled = false;
                 document.getElementById("passwordInfo").disabled = false;
@@ -125,8 +132,8 @@ function checkCode() {
                 document.getElementById("firstnameInfo").disabled = true;
                 document.getElementById("middlenameInfo").disabled = true;
                 document.getElementById("lastnameInfo").disabled = true;
-                document.getElementById("student_id").disabled = true;
-                document.getElementById("courseInfo").disabled = true;
+                document.getElementById("emp_id").disabled = true;
+                document.getElementById("deptInfo").disabled = true;
                 document.getElementById("contactnumberInfo").disabled = true;
                 document.getElementById("emailInfo").disabled = true;
                 document.getElementById("passwordInfo").disabled = true;
@@ -145,8 +152,8 @@ function checkCode() {
 
     <script>
         function autoFill() {
-            const input1 = document.getElementById('studentID').value;
-            document.getElementById('student_id').value = input1;
+            const input1 = document.getElementById('empId').value;
+            document.getElementById('emp_id').value = input1;
         }
     </script>
 </head>
@@ -159,12 +166,15 @@ function checkCode() {
     <img src="../pic/srclogo.png" alt="Logo" style="width: 80px; height: auto; display: block; margin: 0 auto;">
     <center>
         <div class="col-xl-6">
-            <label class="form-control-label" for="studentID">Enter Student ID:</label>
-            <input type="text" id="studentID" name="studentID" oninput="autoFill()" class="form-control">
+            <label class="form-control-label" for="empId">Enter Teacher ID:</label>
+            <input type="text" id="empId" name="empId" oninput="autoFill()" class="form-control">
             <br>
-            <button type="button" style="width: 100px; height: 50px;" class="btn btn-success" onclick="checkStudent()">Check ID</button>
+            <button type="button" style="width: 100px; height: 50px;" class="btn btn-success" onclick="checkTeacher()">Check ID</button>
+            <br>
+            <br>
+            <a class="btn btn-danger" type="button" href="../index.php">Back</a>
         </div>
-
+        <!--
         <div class="col-xl-6 mt-4">
             <label class="form-control-label" for="accessCode">Enter Access Code:</label>
             <input type="text" id="accessCode" name="accessCode" oninput="autoFill()" class="form-control">
@@ -174,21 +184,21 @@ function checkCode() {
             <br>
             <a class="btn btn-danger" type="button" href="../index.php">Back</a>
         </div>
+    -->
     </center>
 </div>
 
 
 
-
 <div class="container" id="signup" style="display: none; width: 450px; padding: 1rem; margin: 20px auto; border-radius: 10px; box-shadow: 0 12px 20px rgba(0, 0, 0, 0.7);">
-    <form action="register.php" method="POST">
+    <form action="registerteacher.php" method="POST">
         <!-- Add logo at the top -->
         <img src="poster/srclogo.png" alt="Logo" style="width: 80px; height: auto; display: block; margin: 0 auto;">
         <!-- ID, First Name, Middle Name, Last Name Row -->
         <div class="row mb-3">
             <div class="col-md-6">
-                <label class="form-label" for="id">ID:</label>
-                <input class="form-control" type="text" id="student_id" name="student_id" disabled readonly>
+                <label class="form-label" for="emp_id">ID:</label>
+                <input class="form-control" type="text" id="emp_id" name="emp_id" disabled readonly>
             </div>
             <div class="col-md-6">
                 <label class="form-label" for="extraInfo">First Name:</label>
@@ -211,13 +221,13 @@ function checkCode() {
         <!-- Course, Contact Number, Email, Password Row -->
         <div class="row mb-3">
             <div class="col-md-6">
-                <label class="form-label" for="dropdown">Course:</label>
-                <select id="courseInfo" name="courseInfo" class="form-control" disabled required>
+                <label class="form-label" for="dropdown">Department:</label>
+                <select id="deptInfo" name="deptInfo" class="form-control" disabled required>
                     <option value="">--Select Course--</option>
-                    <option value="BSIS">Bachelor of Science in Information Systems</option>
-                    <option value="BSAIS">Bachelor of Science in Accounting Information Systems</option>
-                    <option value="BEED">Bachelor of Elementary Education</option>
-                    <option value="BSET">Bachelor of Science in Entrepreneurship</option>
+                    <option value="COE">College of Education</option>
+                    <option value="CCS">College of Computer Studies</option>
+                    <option value="CBS">College of Business Studies</option>
+                   
                 </select>
             </div>
 

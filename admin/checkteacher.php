@@ -5,15 +5,12 @@ include '../db.php';
 
 
 // Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
 
 // Get the student ID from the request
-$emp_id = $_POST['emp_id'];
+$empId = $_POST['empId'];
 
 // Check if the student exists in the database
-$sql = "SELECT * FROM tblteacher WHERE emp_id = '$emp_id'";
+$sql = "SELECT * FROM tblteacher WHERE emp_id = '$empId'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {

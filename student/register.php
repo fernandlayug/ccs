@@ -19,7 +19,7 @@ if(isset($_POST['submit']))
 $sql=mysqli_query($conn,"Update tblstudent set firstname='$firstname', middlename='$middlename', lastname='$lastname', course='$course', contactnumber='$contactnumber', email='$email', password='$password' where student_id='$student_id'");
     if($sql)
     {
-    $msg=" Updated Successfully";
+        header("location:index.php");
 
     }
 }
