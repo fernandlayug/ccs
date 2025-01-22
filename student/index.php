@@ -38,11 +38,11 @@ $_SESSION['errmsg']="Invalid username or password";
 <body>
     <div class="login-container">
         <div class="login-box">
+            <!-- Add logo at the top -->
+            <img src="../poster/srclogo.png" alt="Logo" style="width: 80px; height: auto; display: block; margin: 0 auto;">
             <h2>Student Login</h2>
             <form method="post">
                 <fieldset>
-                    <legend>Sign in to your account</legend>
-                    <p>Please enter your name and password to log in.</p>
                     <span class="text-danger">
                         <?php echo htmlentities($_SESSION['errmsg']); ?>
                         <?php echo htmlentities($_SESSION['errmsg'] = ""); ?>
