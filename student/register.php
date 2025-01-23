@@ -178,38 +178,37 @@ function checkCode() {
 
 
 <br><br><br><br>
-<div class="container" id="signup" style="display: none; width: 450px; padding: 1rem; margin: 20px auto; border-radius: 10px; box-shadow: 0 12px 20px rgba(0, 0, 0, 0.7);">
+<div class="container" id="signup" style="display: none; width: 500px; padding: 20px; margin: 20px auto; border: 2px solid #f3f3f3; border-radius: 8px; background-color: #fff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);">
     <form action="register.php" method="POST">
-        <!-- Add logo at the top -->
-        <img src="../pic/srclogo.png" alt="Logo" style="width: 80px; height: auto; display: block; margin: 0 auto;">
-        <!-- ID, First Name, Middle Name, Last Name Row -->
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <label class="form-label" for="id">ID:</label>
-                <input class="form-control" type="text" id="student_id" name="student_id" disabled readonly>
+        <!-- Logo and ID at the top -->
+        <div class="text-center mb-4" style="display: flex; align-items: center; justify-content: center;">
+            <img src="../pic/srclogo.png" alt="Logo 1" style="width: 75px; height: auto; margin-right: 15px;">
+            <div style="text-align: left;">
+                <label for="student_id" class="form-label" style="font-size: 16px; font-weight: bold;">Student ID:</label>
+                <input type="text" id="student_id" name="student_id" class="form-control" disabled style="width: 200px; margin-top: 5px;">
             </div>
-            <div class="col-md-6">
-                <label class="form-label" for="extraInfo">First Name:</label>
-                <input class="form-control" type="text" id="firstnameInfo" name="firstnameInfo" disabled required>
-            </div>
+            <img src="../pic/ccs-logo.png" alt="Logo 2" style="width: 75px; height: auto; margin-left: 15px;">
         </div>
 
-        <!-- Middle Name, Last Name, Course, Contact Row -->
+        <!-- Personal Information -->
         <div class="row mb-3">
             <div class="col-md-6">
-                <label class="form-label" for="name">Middle Name:</label>
-                <input class="form-control" type="text" id="middlenameInfo" name="middlenameInfo" disabled required>
+                <label class="form-label" for="firstnameInfo">First Name:</label>
+                <input class="form-control" type="text" id="firstnameInfo" name="firstnameInfo" disabled required>
             </div>
             <div class="col-md-6">
-                <label class="form-label" for="name">Last Name:</label>
+                <label class="form-label" for="lastnameInfo">Last Name:</label>
                 <input class="form-control" type="text" id="lastnameInfo" name="lastnameInfo" disabled required>
             </div>
         </div>
 
-        <!-- Course, Contact Number, Email, Password Row -->
         <div class="row mb-3">
             <div class="col-md-6">
-                <label class="form-label" for="dropdown">Course:</label>
+                <label class="form-label" for="middlenameInfo">Middle Name:</label>
+                <input class="form-control" type="text" id="middlenameInfo" name="middlenameInfo" disabled required>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="courseInfo">Course:</label>
                 <select id="courseInfo" name="courseInfo" class="form-control" disabled required>
                     <option value="">--Select Course--</option>
                     <option value="BSIS">Bachelor of Science in Information Systems</option>
@@ -218,26 +217,29 @@ function checkCode() {
                     <option value="BSET">Bachelor of Science in Entrepreneurship</option>
                 </select>
             </div>
+        </div>
 
+        <!-- Contact Details -->
+        <div class="row mb-3">
             <div class="col-md-6">
-                <label class="form-label" for="name">Contact Number:</label>
+                <label class="form-label" for="contactnumberInfo">Contact Number:</label>
                 <input class="form-control" type="number" id="contactnumberInfo" name="contactnumberInfo" disabled required>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="emailInfo">Email:</label>
+                <input class="form-control" type="email" id="emailInfo" name="emailInfo" disabled required>
             </div>
         </div>
 
-        <!-- Email and Password Row -->
+        <!-- Password -->
         <div class="row mb-3">
-            <div class="col-md-6">
-                <label class="form-label" for="name">Email:</label>
-                <input class="form-control" type="email" id="emailInfo" name="emailInfo" disabled required>
-            </div>
-
-            <div class="col-md-6">
-                <label class="form-label" for="name">Password:</label>
+            <div class="col-md-12">
+                <label class="form-label" for="passwordInfo">Password:</label>
                 <input class="form-control" type="password" id="passwordInfo" name="passwordInfo" disabled required>
             </div>
         </div>
 
+        <!-- Submit Button -->
         <div class="text-center">
             <button type="submit" value="Register" name="submit" class="btn btn-primary w-100">Register</button>
         </div>
