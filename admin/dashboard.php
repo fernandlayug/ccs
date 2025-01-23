@@ -31,8 +31,7 @@ if(strlen($_SESSION['id']==0)) {
     <ul>
         <li><a href="dashboard.php" class="active"><i class="fas fa-home"></i> Dashboard</a></li>
         <li><a href="addcapstone.php"><i class="fas fa-book"></i> Capstone Study</a></li>
-        <li><a href="profile.php"><i class="fas fa-user"></i> Profile</a></li>
-        <br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br>
         <li><a href="index.php"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
     </ul>
 </div>

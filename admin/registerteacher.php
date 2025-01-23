@@ -161,101 +161,93 @@ function checkCode() {
 
 
 
-<div class="container" id="check" style="padding: 20px; max-width: 500px; margin: auto; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-    <!-- Add logo at the top -->
-    <img src="../pic/srclogo.png" alt="Logo" style="width: 80px; height: auto; display: block; margin: 0 auto;">
-    <center>
-        <div class="col-xl-6">
-            <label class="form-control-label" for="empId">Enter Teacher ID:</label>
-            <input type="text" id="empId" name="empId" oninput="autoFill()" class="form-control">
-            <br>
-            <button type="button" style="width: 100px; height: 50px;" class="btn btn-success" onclick="checkTeacher()">Check ID</button>
-            <br>
-            <br>
-            <a class="btn btn-danger" type="button" href="../index.php">Back</a>
-        </div>
-        <!--
-        <div class="col-xl-6 mt-4">
-            <label class="form-control-label" for="accessCode">Enter Access Code:</label>
-            <input type="text" id="accessCode" name="accessCode" oninput="autoFill()" class="form-control">
-            <br>
-            <button type="button" style="width: 100px; height: 50px;" class="btn btn-success" onclick="checkCode()">Check</button>
-            <br>
-            <br>
-            <a class="btn btn-danger" type="button" href="../index.php">Back</a>
-        </div>
-    -->
-    </center>
+<div class="container" id="check" style="padding: 20px; max-width: 500px; margin: auto; border: 2px solid  #f3f3f3; border-radius: 8px; background-color: #f3f3f3; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); text-align: center;">
+    <!-- Logo -->
+    <img src="../pic/srclogo.png" alt="Logo" style="width: 90px; margin: 10px auto;">
+
+    <h4 class="mb-3" style="font-weight: bold; color: #333;">Teacher ID Verification</h4>
+
+    <div style="margin-bottom: 15px;">
+        <label for="empId" style="font-size: 16px; color: #333; font-weight: 500;">Enter Teacher ID:</label>
+        <input type="text" id="empId" name="empId" class="form-control mt-2" style="width: 80%; margin: 0 auto; border-radius: 5px; border: 1px solid #ccc;" oninput="autoFill()" placeholder="Teacher ID">
+    </div>
+
+    <div>
+        <button type="button" class="btn btn-success" style="width: 150px; height: 45px; font-size: 16px; font-weight: bold;" onclick="checkTeacher()">Check ID</button>
+    </div>
+
+    <div class="mt-3">
+        <a href="../index.php" class="btn btn-danger" style="width: 150px; height: 45px; font-size: 16px; font-weight: bold;">Back</a>
+    </div>
 </div>
 
-
-
-<div class="container" id="signup" style="display: none; width: 450px; padding: 1rem; margin: 20px auto; border-radius: 10px; box-shadow: 0 12px 20px rgba(0, 0, 0, 0.7);">
+<div class="container" id="signup" style="display: none; width: 500px; padding: 20px; margin: 30px auto; border: 2px solid #f3f3f3; border-radius: 8px; background-color: #fff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);">
     <form action="registerteacher.php" method="POST">
-        <!-- Add logo at the top -->
-        <img src="../pic/srclogo.png" alt="Logo" style="width: 80px; height: auto; display: block; margin: 0 auto;">
-        <!-- ID, First Name, Middle Name, Last Name Row -->
+        <!-- Logos and ID -->
+        <div class="text-center mb-4" style="display: flex; align-items: center; justify-content: center;">
+            <img src="../pic/srclogo.png" alt="Logo 1" style="width: 75px; height: auto; margin-right: 15px;">
+            <div style="text-align: left;">
+                <label for="emp_id" class="form-label" style="font-size: 16px; font-weight: bold;">Teacher ID:</label>
+                <input type="text" id="emp_id" name="emp_id" class="form-control" disabled style="width: 200px; margin-top: 5px;">
+            </div>
+            <img src="../pic/ccs-logo.png" alt="Logo 2" style="width: 75px; height: auto; margin-left: 15px;">
+        </div>
+
+        <!-- First Name and Last Name -->
         <div class="row mb-3">
             <div class="col-md-6">
-                <label class="form-label" for="emp_id">ID:</label>
-                <input class="form-control" type="text" id="emp_id" name="emp_id" disabled readonly>
+                <label for="firstnameInfo" class="form-label">First Name:</label>
+                <input type="text" id="firstnameInfo" name="firstnameInfo" class="form-control" disabled required>
             </div>
             <div class="col-md-6">
-                <label class="form-label" for="extraInfo">First Name:</label>
-                <input class="form-control" type="text" id="firstnameInfo" name="firstnameInfo" disabled required>
+                <label for="middlenameInfo" class="form-label">Middle Name:</label>
+                <input type="text" id="middlenameInfo" name="middlenameInfo" class="form-control" disabled required>
             </div>
         </div>
 
-        <!-- Middle Name, Last Name, Course, Contact Row -->
+        <!-- Middle Name and Department -->
         <div class="row mb-3">
             <div class="col-md-6">
-                <label class="form-label" for="name">Middle Name:</label>
-                <input class="form-control" type="text" id="middlenameInfo" name="middlenameInfo" disabled required>
+                <label for="lastnameInfo" class="form-label">Last Name:</label>
+                <input type="text" id="lastnameInfo" name="lastnameInfo" class="form-control" disabled required>
             </div>
             <div class="col-md-6">
-                <label class="form-label" for="name">Last Name:</label>
-                <input class="form-control" type="text" id="lastnameInfo" name="lastnameInfo" disabled required>
-            </div>
-        </div>
-
-        <!-- Course, Contact Number, Email, Password Row -->
-        <div class="row mb-3">
-            <div class="col-md-6">
-                <label class="form-label" for="dropdown">Department:</label>
+                <label for="deptInfo" class="form-label">Department:</label>
                 <select id="deptInfo" name="deptInfo" class="form-control" disabled required>
-                    <option value="">--Select Course--</option>
+                    <option value="">--Select Department--</option>
                     <option value="COE">College of Education</option>
                     <option value="CCS">College of Computer Studies</option>
                     <option value="CBS">College of Business Studies</option>
-                   
                 </select>
             </div>
-
-            <div class="col-md-6">
-                <label class="form-label" for="name">Contact Number:</label>
-                <input class="form-control" type="number" id="contactnumberInfo" name="contactnumberInfo" disabled required>
-            </div>
         </div>
 
-        <!-- Email and Password Row -->
+        <!-- Contact Number and Email -->
         <div class="row mb-3">
             <div class="col-md-6">
-                <label class="form-label" for="name">Email:</label>
-                <input class="form-control" type="email" id="emailInfo" name="emailInfo" disabled required>
+                <label for="contactnumberInfo" class="form-label">Contact Number:</label>
+                <input type="number" id="contactnumberInfo" name="contactnumberInfo" class="form-control" disabled required>
             </div>
-
             <div class="col-md-6">
-                <label class="form-label" for="name">Password:</label>
-                <input class="form-control" type="password" id="passwordInfo" name="passwordInfo" disabled required>
+                <label for="emailInfo" class="form-label">Email:</label>
+                <input type="email" id="emailInfo" name="emailInfo" class="form-control" disabled required>
             </div>
         </div>
 
-        <div class="text-center">
-            <button type="submit" value="Register" name="submit" class="btn btn-primary w-100">Register</button>
+        <!-- Password -->
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <label for="passwordInfo" class="form-label">Password:</label>
+                <input type="password" id="passwordInfo" name="passwordInfo" class="form-control" disabled required>
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="text-center mt-4">
+            <button type="submit" name="submit" class="btn btn-primary" style="width: 200px; height: 50px; font-size: 16px; font-weight: bold;">Register</button>
         </div>
     </form>
 </div>
-
 
 </body>
 </html>
