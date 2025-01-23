@@ -1,6 +1,4 @@
 <?php
-error_reporting(E_ALL);   // Reports all types of errors, warnings, and notices
-ini_set('display_errors', 1);  // Displays errors directly in the browser
 session_start();
 include("../db.php");
 if(isset($_POST['submit']))
@@ -44,8 +42,7 @@ $_SESSION['errmsg']="Invalid username or password";
                     <legend>Sign in to your account</legend>
                     <p>Please enter your username and password to log in.</p>
                     <span class="text-danger">
-                        <?php echo htmlentities($_SESSION['errmsg']); ?>
-                        <?php echo htmlentities($_SESSION['errmsg'] = ""); ?>
+                        
                     </span>
                     <div class="mb-3">
                         <label for="email" class="form-label">Username</label>
