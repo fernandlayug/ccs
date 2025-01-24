@@ -1,281 +1,192 @@
 <?php
 session_start();
-include('../db.php');
-if(strlen($_SESSION['id']==0)) {
- header('location:logout.php');
-  } else{
+// Include database connection
+include '../db.php';
 
+try {
 
+    if (!isset($conn)) {
+        throw new Exception("Database connection failed: \$conn is undefined.");
+    }
+
+    // Fetch images from the database
+    $result = $conn->query("SELECT * FROM tbl_capstone LIMIT 4");
+
+    // Check if query was successful
+    if (!$result) {
+        throw new Exception("Error fetching images: " . $conn->error);
+    }
+
+    // Check if any images exist
+    $images_exist = ($result->num_rows > 0);
+} catch (Exception $e) {
+    $error_message = $e->getMessage();
+}
+
+$login_message = isset($_SESSION['login']) ? htmlspecialchars($_SESSION['login'], ENT_QUOTES, 'UTF-8') : 'Guest';
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="dashboard.css">
+    <title>College of Computer Studies</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-</head>
-<style>
-        /* General Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* Sidebar Styling */
-        .sidebar {
-            width: 250px;
-            height: 100vh;
-            background-color: #2c3e50;
-            position: fixed;
-            top: 0;
-            left: 0;
-            padding-top: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .sidebar.active {
-            left: -250px;
-        }
-
-        .sidebar .logo {
-            border-radius: 50%;
-            margin-bottom: 10px;
-        }
-
-        .sidebar h2 {
-            color: #ecf0f1;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .sidebar ul {
-            list-style: none;
-        }
-
-        .sidebar ul li {
-            padding: 15px 20px;
-        }
-
-        .sidebar ul li a {
-            color: #ecf0f1;
-            font-size: 18px;
-            text-decoration: none;
-            display: block;
-        }
-
-        .sidebar ul li a:hover, 
-        .sidebar ul li a.active {
-            background-color: #34495e;
-            border-radius: 5px;
-        }
-
-        /* Hamburger Menu */
-        .menu-toggle {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            font-size: 24px;
-            color: #2c3e50;
-            cursor: pointer;
-            display: none;
-        }
-
-        .menu-toggle.active {
-            color: #ecf0f1;
-        }
-
-        /* Content Styling */
-        .content {
-            margin-left: 250px;
-            padding: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .sidebar.active ~ .content {
-            margin-left: 0;
-        }
-
-        /* Form Styling */
-        .capstone-form {
-            max-width: 800px;
-            background: #ffffff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin: 0 auto;
-        }
-
-        .capstone-form label {
-            display: block;
-            font-weight: bold;
-            margin-top: 15px;
-            margin-bottom: 5px;
-        }
-
-        .capstone-form input[type="text"],
-        .capstone-form textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        .capstone-form textarea {
-            resize: vertical;
-        }
-
-        .capstone-form .btn-submit {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #2c3e50;
-            color: white;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .capstone-form .btn-submit:hover {
-            background-color: #34495e;
-        }
-
-        /* Enhanced Content Styling */
-        .content {
-            margin-left: 250px; /* Ensure spacing when sidebar is visible */
-            padding: 30px; /* Add extra padding */
-            background: linear-gradient(145deg, #ffffff, #e6e6e6); /* Soft gradient background */
-            border-radius: 15px; /* Smooth, rounded corners */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-            font-family: 'Arial', sans-serif; /* Clean and professional font */
-            transition: all 0.3s ease;
-        }
-
-        /* Welcome Message */
-        .content h1 {
-            font-size: 2.5rem; /* Larger font for headline */
-            color: #2c3e50; /* Dark color for contrast */
-            font-weight: 700; /* Bold text */
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Subtle text shadow */
-            margin-bottom: 15px;
-        }
-
-        /* Description Text */
-        .content p {
-            font-size: 1.25rem; /* Slightly larger font size */
-            color: #7f8c8d; /* Softer text color for description */
-            line-height: 1.8; /* Better readability */
-            text-align: justify; /* Align text for a cleaner look */
-        }
-
-        /* Decorative Divider */
-        .content hr {
-            border: none;
-            border-top: 2px solid #bdc3c7; /* Neutral-colored divider */
-            margin: 20px 0; /* Add spacing */
-        }
-
-        /* Highlight Box (Optional Section) */
-        .content .highlight-box {
-            background-color: #ecf0f1; /* Subtle contrast background */
-            padding: 20px;
-            border-left: 5px solid #2c3e50; /* Accent border */
-            margin-top: 20px;
-            border-radius: 10px; /* Rounded corners */
-            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1); /* Inner shadow */
-        }
-
-        .content .highlight-box h2 {
-            color: #2c3e50; /* Accent text color */
-            margin-bottom: 10px;
-        }
-
-        .content .highlight-box p {
-            font-size: 1.1rem;
-            color: #34495e; /* Complementary text color */
-        }
-
-        /* Capstone List Styling */
-        .capstone-list {
-            margin-top: 20px;
-        }
-
-        .capstone-item {
-            background-color: #ecf0f1; /* Light background */
-            padding: 15px;
-            margin-bottom: 15px;
-            border-left: 5px solid #2c3e50; /* Accent border */
-            border-radius: 8px; /* Smooth corners */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-        }
-
-        .capstone-item h3 {
-            font-size: 1.5rem;
-            color: #2c3e50; /* Dark color for title */
-            margin-bottom: 10px;
-        }
-
-        .capstone-item p {
-            font-size: 1rem;
-            color: #34495e; /* Complementary text color */
-            margin-bottom: 10px;
-            line-height: 1.5; /* Better readability */
-        }
-
-        .capstone-item small {
-            color: #7f8c8d; /* Subtle text for date and time */
-        }
-
-        .search-bar {
-            width: 100%; /* Full width */
-            max-width: 600px; /* Optional max width to control the size */
-            margin: 0 auto; /* Center it */
-            padding: 10px; /* Space around the form */
-            background-color: #fff; /* White background */
-            border-radius: 8px; /* Rounded corners */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-        }
-
-        .search-bar input {
-            font-size: 16px; /* Slightly larger text */
-            border-radius: 5px; /* Rounded corners */
-        }
-
-        .search-bar button {
-            border-radius: 5px; /* Rounded button */
-            padding: 0.5rem 1.25rem; /* Add some padding for a comfortable size */
-        }
-
-        .search-bar button i {
-            margin-right: 5px; /* Space between the icon and the text */
-        }
-
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
-            }
-
-            .sidebar {
-                width: 250px;
-                left: -250px;
-            }
-
-            .content {
-                margin-left: 0;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="../static/css/index.css">
 </head>
 <body>
-student
+<!-- Navigator Section -->
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <a class="navbar-brand text-white" href="#">
+            <img src="../pic/ccs-logo.png" alt="CCS Logo" style="width: 40px; height: auto;"> College of Computer Studies
+        </a>
+        <a style="color: white;">Welcome, <?php echo $login_message; ?>!</a>
+    </div>
+</nav>
+
+<!-- Banner Section -->
+<div id="bannerCarousel" class="carousel slide mt-4" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div class="banner text-center">
+                <h1 class="display-4">Welcome to CCS</h1>
+                <p class="lead">Your gateway to streamlined solutions</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="banner text-center">
+                <h1 class="display-4">Innovate with Us</h1>
+                <p class="lead">Explore endless possibilities in technology</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="banner text-center">
+                <h1 class="display-4">Join the Community</h1>
+                <p class="lead">Empowering the next generation of tech leaders</p>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#bannerCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+<!-- Content Sections -->
+<div class="container">
+
+    <!-- First Row -->
+    <div class="row text-center mt-5 mb-4">
+        <div class="col-md-4">
+            <div class="grid-item ssite" onclick="window.location.href='ssite.html'">
+                <div class="grid-icon">📘</div>
+                <h4>SSITE</h4>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="grid-item dns" onclick="window.location.href='dns.html'">
+                <div class="grid-icon">🌐</div>
+                <h4>DiNs Circle</h4>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="grid-item class-offers" onclick="window.location.href='class-offers.html'">
+                <div class="grid-icon">📚</div>
+                <h4>Class Officers</h4>
+            </div>
+        </div>
+    </div>
+
+    <!-- Grid Section 1 -->
+    <div class="row mb-3">
+
+    <?php if (isset($error_message)): ?>
+        <div class="alert alert-danger" role="alert">
+            <?= htmlspecialchars($error_message) ?>
+        </div>
+    <?php endif; ?>
+
+    <?php if (isset($images_exist) && !$images_exist): ?>
+        <div class="alert alert-info" role="alert">
+            No images uploaded yet. Be the first to upload an image!
+        </div>
+    <?php endif; ?>
+
+    <?php if (isset($images_exist) && $images_exist): ?>
+        <?php while ($row = $result->fetch_assoc()): ?>
+
+            <div class="col-md-3 mb-3">
+                <div class="p-3 border grid-item" onclick="">
+                    <img src="<?php echo $row['poster_path']; ?>" alt="Uploaded Image" class="img-fluid">
+                    <!-- <h6 class="mt-2">Record Management</h6> -->
+                </div>
+            </div>
+        <?php endwhile; ?>
+    <?php endif; ?>
+
+    </div> 
+
+<div class="text-end mb-4">
+            <a href="seemore1.php" class="btn btn-primary">See More...</a>
+</div>
+    
+    
+    <!-- Grid Section 2 -->
+    <div class="row mb-3">
+        <!-- Placeholder Items -->
+        <?php for ($i = 5; $i <= 8; $i++): ?>
+            <div class="col-md-3">
+                <div class="p-3 border grid-item" onclick="window.location.href='item<?= $i ?>.html'">
+                    <img src="https://via.placeholder.com/150" alt="Item <?= $i ?>" class="img-fluid">
+                    <h6 class="mt-2">jj<?= $i ?></h6>
+                </div>
+            </div>
+        <?php endfor; ?>
+      
+    </div>
+
+  
+
+    <div class="text-end">
+
+        <a href="#" class="btn btn-primary">See More...</a>
+    </div>
+
+</div>
+
+
+
+
+    <div id="fullscreenModal" class="fullscreen-modal">
+        <span class="close" onclick="closeFullscreen()">&times;</span>
+        <img id="fullscreenImage" src="">
+    </di>
+
+<!-- Footer Section -->
+<footer>
+    <div class="container">
+        <p>&copy; 2024 College of Computer Studies. All Rights Reserved.</p>
+    </div>
+</footer>
+
+    <script>
+        function openFullscreen(src) {
+            const modal = document.getElementById('fullscreenModal');
+            const modalImage = document.getElementById('fullscreenImage');
+            modal.style.display = 'block';
+            modalImage.src = src;
+        }
+
+        function closeFullscreen() {
+            document.getElementById('fullscreenModal').style.display = 'none';
+        }
+    </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-<?php } ?>
