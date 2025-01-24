@@ -99,13 +99,16 @@ if(strlen($_SESSION['id']==0)) {
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
+    // Get the sidebar and menu toggle elements
     const menuToggle = document.getElementById('menu-toggle');
     const sidebar = document.getElementById('sidebar');
-    
+
+    // Add a click event listener to toggle the sidebar's active class
     menuToggle.addEventListener('click', () => {
         sidebar.classList.toggle('active');
     });
 </script>
+
 
 </body>
 </html>

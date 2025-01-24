@@ -75,6 +75,16 @@
     transition: all 0.3s ease;
 }
 
+.sidebar.active {
+    width: 0;
+    overflow: hidden;
+}
+
+.content {
+    margin-left: 250px;
+    transition: margin-left 0.3s ease;
+}
+
 .sidebar.active ~ .content {
     margin-left: 0;
 }
