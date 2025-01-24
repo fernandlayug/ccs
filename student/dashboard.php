@@ -41,9 +41,13 @@ $login_message = isset($_SESSION['login']) ? htmlspecialchars($_SESSION['login']
         <a class="navbar-brand text-white" href="#">
             <img src="../pic/ccs-logo.png" alt="CCS Logo" style="width: 40px; height: auto;"> College of Computer Studies
         </a>
-        <a style="color: white;">Welcome, <?php echo $login_message; ?>!</a>
+        <div class="d-flex align-items-center">
+            <span style="color: white; margin-right: 15px;">Welcome, <?php echo $login_message; ?>!</span>
+            <a href="index.php" class="btn btn-outline-light">Logout</a>
+        </div>
     </div>
 </nav>
+
 
 <!-- Banner Section -->
 <div id="bannerCarousel" class="carousel slide mt-4" data-bs-ride="carousel">
