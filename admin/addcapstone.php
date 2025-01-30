@@ -13,7 +13,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $adviser = $conn->real_escape_string($_POST['adviser']);
     $link_path = $conn->real_escape_string($_POST['link_path']);
 
-
     $poster_path = 'poster/' . basename($_FILES['poster_path']['name']);
     $imrad_path = 'imrad/' . basename($_FILES['imrad_path']['name']);
 
