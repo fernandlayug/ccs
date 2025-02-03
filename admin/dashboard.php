@@ -83,7 +83,7 @@
                     echo '<div class="capstone-item">';
                     echo '<h3>' . htmlspecialchars($row['title']) . '</h3>';
                     echo '<p>' . htmlspecialchars($row['description']) . '</p>';
-                    echo '<small>Student submitted: ' . (isset($_SESSION['email']) ? htmlspecialchars($_SESSION['email']) : 'Unknown User') . '</small>';
+                    echo '<small>Admin submitted: ' . (isset($_SESSION['email']) ? htmlspecialchars($_SESSION['email']) : 'Unknown User') . '</small>';
                     echo '<br>';
                     echo '<small>Submitted on: ' . htmlspecialchars($row['submitted_at']) . '</small>';
                     echo '</div><hr>';
