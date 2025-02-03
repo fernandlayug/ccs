@@ -1,6 +1,6 @@
 <?php
-error_reporting(E_ALL);   // Reports all types of errors, warnings, and notices
-ini_set('display_errors', 1);  // Displays errors directly in the browser
+error_reporting(0); 
+
 session_start();
 include("../db.php");
 if(isset($_POST['submit']))

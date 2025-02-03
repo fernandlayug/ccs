@@ -1,5 +1,5 @@
 <?php
-include '../db.php'; 
+include 'db.php'; 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
    
@@ -71,22 +71,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
 
         <div class="mb-3">
-            <label for="a1_sname" class="form-label">Author1 Surname</label>
+            <label for="a1_sname" class="form-label"> Surname</label>
             <input type="text" class="form-control" name="a1_sname" required>
         </div>
 
         <div class="mb-3">
-            <label for="a1_name" class="form-label">Author1 Name</label>
+            <label for="a1_name" class="form-label"> Name</label>
             <input type="text" class="form-control" name="a1_fname" required>
         </div>
 
         <div class="mb-3">
-            <label for="a1_name" class="form-label">Author1 Middle</label>
+            <label for="a1_name" class="form-label"> Middle</label>
             <input type="text" class="form-control" name="a1_mname" required>
         </div>
 
         <div class="mb-3">
-            <label for="a1_role" class="form-label">Author1 Role</label>
+            <label for="a1_role" class="form-label"> Role</label>
             <input type="text" class="form-control" name="a1_role" required>
         </div>
 

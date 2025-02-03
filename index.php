@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include 'db.php';
 
 try {
@@ -16,7 +17,7 @@ try {
     $error_message = $e->getMessage();
 }
 
-
+ob_end_flush();
 ?>
 
 
